@@ -20,19 +20,20 @@ if (isset($_SESSION['s_user']) && (is_array($_SESSION['s_user'])) && (count($_SE
     <meta property="og:title" content="">
     <meta property="og:type" content="">
     <meta property="og:url" content="">
+    <base href="http://localhost/market/">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="admin/view/assets/imgs/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./view/assets/imgs/favicon.ico">
     <!-- Template CSS -->
-    <link href="admin/view/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="./view/assets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <div class="screen-overlay"></div>
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
-            <a href="index.php" class="brand-wrap">
-                <img src="admin/view/assets/imgs/theme/nav-log.png" class="logo" alt="Suruchi Dashboard">
+            <a href="index.php" class="brand-wrap" style="width: 50px;">
+                <img src="./view/assets/imgs/theme/nav-log.png" style="height: 30px; " class="logo" alt="Suruchi Dashboard">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
@@ -43,14 +44,8 @@ if (isset($_SESSION['s_user']) && (is_array($_SESSION['s_user'])) && (count($_SE
             <ul class="menu-aside">
 
                 <li class="menu-item">
-                    <a class="menu-link" href="index.php?pg=products-list"> <i
-                            class="icon material-icons md-shopping_bag"></i>
+                    <a class="menu-link" href="index.php?pg=products-list"> <i class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Sản Phẩm</span>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="index.php?pg=categories"><i class="icon material-icons md-category"></i>
-                        <span class="text">Danh Mục</span>
                     </a>
                 </li>
 
@@ -73,29 +68,17 @@ if (isset($_SESSION['s_user']) && (is_array($_SESSION['s_user'])) && (count($_SE
                 </form>
             </div>
             <div class="col-nav">
-                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
-                        class="material-icons md-apps"></i> </button>
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
                 <ul class="nav">
 
-                    <li class="nav-item">
-                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
-                                class="material-icons md-cast"></i></a>
-                    </li>
+
 
                     <li class="dropdown nav-item">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
-                            aria-expanded="false"> <img class="img-xs rounded-circle"
-                                src="admin/view/assets/imgs/people/quantri.jpg" alt="User"></a>
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="./view/assets/imgs/people/quantri.jpg" alt="User"></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
-                            <a class="dropdown-item" href="#"><i
-                                    class="material-icons md-perm_identity"></i><?= $admin["username"]; ?></a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i><?= $admin["username"]; ?></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="admin/logout.php"><i
-                                    class="material-icons md-exit_to_app"></i>Đăng xuất</a>
+                            <a class="dropdown-item text-danger" href="admin/logout.php"><i class="material-icons md-exit_to_app"></i>Đăng xuất</a>
                         </div>
                     </li>
                 </ul>

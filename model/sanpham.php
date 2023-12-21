@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 
-function sanpham_insert($name, $img, $price, $old_price, $describe1, $describe2, $bestseller, $hot, $new, $iddm)
+function sanpham_insert($name, $img, $price, $old_price, $describe1, $describe2, $bestseller, $hot, $new)
 {
-    $sql = "INSERT INTO product(name, img, price, old_price, describe1, describe2, bestseller, hot, new, iddm) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    pdo_execute($sql, $name, $img, $price, $old_price, $describe1, $describe2, $bestseller, $hot, $new, $iddm);
+    $sql = "INSERT INTO product(name, img, price, old_price, describe1, describe2, bestseller, hot, new) VALUES (?,?,?,?,?,?,?,?,?)";
+    pdo_execute($sql, $name, $img, $price, $old_price, $describe1, $describe2, $bestseller, $hot, $new);
 }
 
 function sanpham_update($name, $img, $price, $old_price, $describe1, $describe2, $bestseller, $hot, $new, $iddm, $id)
@@ -391,9 +391,7 @@ function get_dssp_admin($kyw, $iddm, $page, $soluongsp)
     $batdau = ($page - 1) * $soluongsp;
     $sql = "SELECT * FROM product WHERE 1";
 
-    if ($iddm > 0) {
-        $sql .= " AND iddm=" . $iddm;
-    }
+
     if ($kyw != "") {
         $sql .= " AND name LIKE '%" . $kyw . "%'";
     }

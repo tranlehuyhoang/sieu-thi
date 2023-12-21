@@ -109,7 +109,7 @@ if (!isset($_GET['pg'])) {
         $old_price = $_POST["old_price"];
         $describe1 = $_POST["describe1"];
         $describe2 = $_POST["describe2"];
-        $iddm = $_POST["iddm"];
+        $iddm = 0;
         $id = $_POST["id"];
         if (isset($_POST['bestseller'])) {
           $bestseller = $_POST["bestseller"];
@@ -202,7 +202,7 @@ if (!isset($_GET['pg'])) {
         $old_price = $_POST["old_price"];
         $describe1 = $_POST["describe1"];
         $describe2 = $_POST["describe2"];
-        $iddm = $_POST["iddm"];
+        $iddm = 0;
         if (isset($_POST['bestseller'])) {
           $bestseller = $_POST["bestseller"];
           if ($bestseller = 1) $bestseller = 1;

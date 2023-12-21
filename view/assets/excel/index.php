@@ -50,9 +50,7 @@
      <div class="container">
          <div class="action">
              <span>Export table to:</span>
-             <button>Xlsx</button>
              <button>Xls</button>
-             <button>CSV</button>
          </div>
          <table id="table">
              <tr>
@@ -80,8 +78,8 @@
                 ?>
          </table>
      </div>
-     <script src="sheet.js"></script>
-     <script src="script.js"></script>
+     <script src="./view/assets/js/sheet.js"></script>
+     <script src="./view/assets/js/script.js"></script>
  </body>
 
  </html>

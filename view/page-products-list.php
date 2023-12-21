@@ -1,15 +1,5 @@
 <?php
-$html_dm = '';
-foreach ($dsdm as $dm) {
-    extract($dm);
-    if ($id == $iddm) {
-        $se = "selected";
-    } else {
-        $se = "";
-    }
-    $link = 'index.php?pg=products-list&iddm=' . $id;
-    $html_dm .= '<option value="' . $link . '" ' . $se . '>' . $name . '</option>';
-}
+
 $html_productlist = showsp_admin($productlist);
 // print_r($productlist);
 
@@ -35,12 +25,7 @@ $html_productlist = showsp_admin($productlist);
                                 class="material-icons md-search"></i></button>
                     </form>
                 </div>
-                <div class="col-lg-3 col-md-3 col-6">
-                    <select class="form-select" id="mySelect">
-                        <option value="index.php?pg=products-list" selected>Tất cả danh mục</option>
-                        <?= $html_dm; ?>
-                    </select>
-                </div>
+
             </div>
         </header>
         <!-- card-header end// -->

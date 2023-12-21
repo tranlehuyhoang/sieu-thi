@@ -5,7 +5,7 @@
  */
 function pdo_get_connection()
 {
-    $dburl = "mysql:host=localhost;dbname=suruchi;charset=utf8;port=3309";
+    $dburl = "mysql:host=localhost;dbname=market;charset=utf8;port=3309";
     $username = 'root';
     $password = '';
 
