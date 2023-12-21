@@ -5,8 +5,21 @@ ob_start();
 include "./model/sanpham.php";
 include "./model/danhmuc.php";
 include "./model/global.php";
+include "./model/user.php";
 
-include "admin/view/header.php";
+include "view/header.php";
+if (isset($_SESSION['s_user']) && is_array($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
+  $admin = $_SESSION['s_user'];
+  if (isset($admin['role']) && $admin['role'] == 1) {
+    // Người dùng có role == 1, cho phép truy cập
+  } else {
+    header('location: admin/login.php');
+    exit();
+  }
+} else {
+  header('location: admin/login.php');
+  exit();
+}
 if (!isset($_GET['pg'])) {
   $dsdm = danhmuc_all();
   $kyw = "";
@@ -29,7 +42,7 @@ if (!isset($_GET['pg'])) {
   $productlist = get_dssp_admin($kyw, $iddm, $page, $soluongsp);
   $tongsosp = get_dssp_all();
   $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-  include "admin/view/page-products-list.php";
+  include "view/page-products-list.php";
   include "admin/assets/excel/index.php";
 } else {
   switch ($_GET['pg']) {
@@ -53,9 +66,10 @@ if (!isset($_GET['pg'])) {
       $soluongsp = 8;
 
       $productlist = get_dssp_admin($kyw, $iddm, $page, $soluongsp);
+      $productlists = get_dssp_admin($kyw, $iddm, $page, $soluongsp);
       $tongsosp = get_dssp_all();
       $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-      include "admin/view/page-products-list.php";
+      include "view/page-products-list.php";
       break;
 
     case 'products-excel':
@@ -80,7 +94,7 @@ if (!isset($_GET['pg'])) {
       $productlist = get_dssp_admin($kyw, $iddm, $page, $soluongsp);
       $tongsosp = get_dssp_all();
       $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-      include "admin/view/assets/excel/index.php";
+      include "view/assets/excel/index.php";
       break;
 
     case 'updateproduct':
@@ -139,11 +153,11 @@ if (!isset($_GET['pg'])) {
       $productlist = get_dssp_admin($kyw, $iddm, 1, $soluongsp);
       $tongsosp = get_dssp_all();
       $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-      include "admin/view/page-products-list.php";
+      include "view/page-products-list.php";
       break;
     case 'page-add-product':
       $categorylist = danhmuc_all();
-      include "admin/view/page-add-product.php";
+      include "view/page-add-product.php";
       break;
     case 'page-update-product':
       if (isset($_GET['id']) && ($_GET['id'] > 0)) {
@@ -152,7 +166,7 @@ if (!isset($_GET['pg'])) {
       }
       //trở về trang dssp
       $categorylist = danhmuc_all();
-      include "admin/view/page-update-product.php";
+      include "view/page-update-product.php";
       break;
     case 'delproduct':
       $dsdm = danhmuc_all();
@@ -176,7 +190,7 @@ if (!isset($_GET['pg'])) {
       $productlist = get_dssp_admin($kyw, $iddm, 1, $soluongsp);
       $tongsosp = get_dssp_all();
       $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-      include "admin/view/page-products-list.php";
+      include "view/page-products-list.php";
       break;
     case 'addproduct':
       if (isset($_POST['addproduct'])) {
@@ -223,10 +237,10 @@ if (!isset($_GET['pg'])) {
         $productlist = get_dssp_admin($kyw, $iddm, 1, $soluongsp);
         $tongsosp = get_dssp_all();
         $hienthisotrang = hien_thi_so_trang($tongsosp, $soluongsp);
-        include "admin/view/page-products-list.php";
+        include "view/page-products-list.php";
       } else {
         $categorylist = danhmuc_all();
-        include "admin/view/page-form-product.php";
+        include "view/page-form-product.php";
       }
       break;
     case 'categories':
@@ -245,7 +259,7 @@ if (!isset($_GET['pg'])) {
         danhmuc_insert($name, $img);
         header("location:index.php?pg=categories");
       }
-      include "admin/view/page-categories.php";
+      include "view/page-categories.php";
       break;
     case 'deletedm':
       $cataloglist = danhmuc_all();
@@ -264,7 +278,7 @@ if (!isset($_GET['pg'])) {
       }
       //trở về trang dm
       $cataloglist = danhmuc_all();
-      include "admin/view/page-categories.php";
+      include "view/page-categories.php";
       break;
     case 'updatedm':
       //kiem tra va lay du lieu
@@ -291,7 +305,7 @@ if (!isset($_GET['pg'])) {
 
       //show dm
       $cataloglist = danhmuc_all();
-      include "admin/view/page-categories.php";
+      include "view/page-categories.php";
       break;
     case 'page-update-dm':
       if (isset($_GET['id']) && ($_GET['id'] > 0)) {
@@ -300,11 +314,13 @@ if (!isset($_GET['pg'])) {
       }
       //trở về trang dm
       $cataloglist = danhmuc_all();
-      include "admin/view/page-update-dm.php";
+      include "view/page-update-dm.php";
       break;
+
+
     default:
-      include "admin/view/home.php";
+      include "view/home.php";
       break;
   }
 }
-include "admin/view/footer.php";
+include "view/footer.php";

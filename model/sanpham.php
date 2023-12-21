@@ -401,7 +401,27 @@ function get_dssp_admin($kyw, $iddm, $page, $soluongsp)
     $sql .= " ORDER BY id ASC LIMIT " . $batdau . "," . $soluongsp;
     return pdo_query($sql);
 }
+function get_dssp_admins($kyw, $iddm)
+{
 
+    $sql = "SELECT * FROM product";
+
+    if ($iddm > 0) {
+        $sql .= " WHERE iddm=" . $iddm;
+    }
+    if ($kyw != "") {
+        if ($iddm > 0) {
+            $sql .= " AND";
+        } else {
+            $sql .= " WHERE";
+        }
+        $sql .= " name LIKE '%" . $kyw . "%'";
+    }
+
+    $sql .= " ORDER BY id ASC";
+
+    return pdo_query($sql);
+}
 function get_dssp_all()
 {
     $sql = " SELECT * FROM product ORDER BY id ASC ";

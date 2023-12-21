@@ -1,28 +1,28 @@
-<?php 
-    session_start();
-    include "../model/pdo.php";
-    include "../model/user.php";
-    // ob_start();
-    if(isset($_POST["login"])) {
-        $uname=$_POST["uname"];
-        $pass=$_POST["pass"];
-        $user=checkuser($uname, $pass);
-        if(isset($user)&&(is_array($user))&&(count($user)>0)){
-            extract($user);
-            if($role==1) {
-                $_SESSION['s_user']=$user;
-                header('location: index.php');
-            } else{ 
-                $tb = "Tài khoản này không có quyền đăng nhập trang quản trị";
-            }
-        } else{
-            if(empty($uname) || empty($pass)){
-                $tb = "Vui lòng điền đầy đủ thông tin !"; 
-            } else{
-                $tb = "Tài khoản này không tồn tại. Hoặc đã nhầm !";
-            }
+<?php
+session_start();
+include "../model/pdo.php";
+include "../model/user.php";
+// ob_start();
+if (isset($_POST["login"])) {
+    $uname = $_POST["uname"];
+    $pass = $_POST["pass"];
+    $user = checkuser($uname, $pass);
+    if (isset($user) && (is_array($user)) && (count($user) > 0)) {
+        extract($user);
+        if ($role == 1) {
+            $_SESSION['s_user'] = $user;
+            header('location: ../');
+        } else {
+            $tb = "Tài khoản này không có quyền đăng nhập trang quản trị";
+        }
+    } else {
+        if (empty($uname) || empty($pass)) {
+            $tb = "Vui lòng điền đầy đủ thông tin !";
+        } else {
+            $tb = "Tài khoản này không tồn tại. Hoặc đã nhầm !";
         }
     }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -55,7 +55,8 @@
             <div class="col-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
@@ -74,7 +75,7 @@
             <div class="card mx-auto card-login">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Đăng nhập</h4>
-                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <div class="mb-3">
                             <input class="form-control" placeholder="Tên người dùng" type="text" name="uname">
                         </div>
@@ -92,12 +93,12 @@
                         </div>
                         <!-- form-group form-check .// -->
                         <div class="mb-4">
-                        <?php 
-                            if(isset($tb)&&($tb!="")){
-                                echo "<span style='color: red;'>".$tb."</span> <br> <br> ";
+                            <?php
+                            if (isset($tb) && ($tb != "")) {
+                                echo "<span style='color: red;'>" . $tb . "</span> <br> <br> ";
                             }
-                        ?>
-                          <button type="submit" class="btn btn-primary w-100" name="login"> Đăng nhập </button>
+                            ?>
+                            <button type="submit" class="btn btn-primary w-100" name="login"> Đăng nhập </button>
                         </div>
                         <!-- form-group// -->
                     </form>
